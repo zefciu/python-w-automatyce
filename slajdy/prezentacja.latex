@@ -1,0 +1,159 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Singapore}
+  % \setbeamercovered{transparent}
+}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+% \usepackage{times}
+
+% For pygmentize
+\usepackage{fancyvrb}
+\usepackage{color}
+
+\input{styles}
+
+
+\title[Python w automatyce]
+
+\author[]{Nikoloz Glonti, Szymon Pyżalski}
+
+\date {PyConPL 2017}
+
+% \AtBeginSubsection[]
+% {
+%   \begin{frame}<beamer>{Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage 
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+
+\section{Wstęp}
+
+\begin{frame}{Zasady}
+  \begin{itemize}
+  \pause
+  \item
+      Wyłącz zasilanie
+    \pause
+  \item
+      Złóż obwód
+    \pause
+  \item
+      Sprawdź
+    \pause
+  \item
+      Podłącz
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ESP-8266}
+  \begin{itemize}
+  \item
+      Moduł wi-fi
+      \pause
+  \item
+      Wykorzystywany jako tani mikrokontroler
+      \pause
+  \item
+      Najtańsza platforma dla μPythona
+      \pause
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ESP-12E}
+  \begin{itemize}
+  \item
+      Wersja wyposażona w 11 GPIO
+      \pause
+  \item
+      Przetwornik analogowo-cyfrowy
+      \pause
+  \item
+      Drukowana antena
+      \pause
+  \item
+      Dedykowane adaptery z miejscem na stabilizator napięcia
+      \pause
+  \end{itemize}
+\end{frame}
+
+% TODO opis części elektronicznych
+
+\section{Podłączamy układ}
+
+\begin{frame}{GPIO specjalnego przeznaczenia}
+    TODO: SP
+\end{frame}
+
+\begin{frame}{Rezystory podciągające}
+    TODO: NG
+\end{frame}
+
+\begin{frame}{Schemat}
+    TODO: NG
+\end{frame}
+
+
+\section{Migająca dioda}
+
+\begin{frame}{Schemat}
+    TODO: NG
+\end{frame}
+
+\begin{frame}{Zasady doboru rezystora}
+    TODO: NG
+\end{frame}
+
+\begin{frame}{Obsługa GPIO w μPythona}
+    TODO: SP
+\end{frame}
+
+\section{Czujnik dźwięku}
+    \begin{frame}{Schemat}
+        TODO: NG
+    \end{frame}
+
+    \begin{frame}{Bouncing sygnału}
+        TODO: SP
+    \end{frame}
+
+
+\section{Tranzystor jako przełącznik}
+
+    \begin{frame}{Schemat}
+        TODO: NG
+    \end{frame}
+
+
+\section{Podzielnik napięcia}
+
+    \begin{frame}{Schemat}
+        TODO: NG
+    \end{frame}
+
+
+
+\end{document}
