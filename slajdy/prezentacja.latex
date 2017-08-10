@@ -13,13 +13,13 @@
 % \usepackage{times}
 
 % For pygmentize
-\usepackage{fancyvrb}
-\usepackage{color}
+% \usepackage{fancyvrb}
+% \usepackage{color}
 
-\input{styles}
+% \input{styles}
 
 
-\title[Python w automatyce]
+\title{Python w automatyce}
 
 \author[]{Nikoloz Glonti, Szymon Pyżalski}
 
@@ -78,7 +78,7 @@
       Wykorzystywany jako tani mikrokontroler
       \pause
   \item
-      Najtańsza platforma dla μPythona
+      Najtańsza platforma dla Pythona
       \pause
   \end{itemize}
 \end{frame}
@@ -127,7 +127,19 @@
     TODO: NG
 \end{frame}
 
-\begin{frame}{Obsługa GPIO w μPythona}
+\begin{frame}{Parametry diody}
+    \begin{itemize}
+    \item
+        Dioda czerwona: 1,8V 2mA
+    \item
+        Dioda żółta: 1,9V 2mA
+    \item
+        Dioda zielona: 2,1V 8mA
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Obsługa GPIO w Pythona}
     TODO: SP
 \end{frame}
 
@@ -148,11 +160,16 @@
     \end{frame}
 
 
-\section{Podzielnik napięcia}
+\section{Dzielnik napięcia}
 
     \begin{frame}{Schemat}
         TODO: NG
     \end{frame}
+
+    \begin{frame}{Wzór}
+        \[V_{out} = V_{in} \cdot \frac{R_2}{R_1 + R_2}\]
+    \end{frame}
+
 
 
 
