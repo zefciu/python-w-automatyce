@@ -1,0 +1,9 @@
+>>> from machine import Pin
+>>> button = Pin(0, Pin.IN)
+>>> button.value() # Przycisk zwolniony
+1
+>>> button.value() # Przycisk wciśnięty
+0
+>>> diode = Pin(13, Pin.OUT)
+>>> diode.value(1) # Dioda zapala się
+>>> diode.value(0) # Dioda gaśnie

@@ -13,10 +13,10 @@
 % \usepackage{times}
 
 % For pygmentize
-% \usepackage{fancyvrb}
-% \usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{color}
 
-% \input{styles}
+\input{styles}
 
 
 \title{Python w automatyce}
@@ -140,7 +140,11 @@
 \end{frame}
 
 \begin{frame}{Obsługa GPIO w Pythona}
-    TODO: SP
+    \input{gpio}
+\end{frame}
+
+\begin{frame}{Pobieranie i wgrywanie plików}
+    \input{ampy}
 \end{frame}
 
 \section{Czujnik dźwięku}
