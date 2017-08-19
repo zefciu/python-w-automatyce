@@ -1,22 +1,21 @@
 \documentclass{beamer}
 
 \mode<presentation>
-{
-  \usetheme{Singapore}
-  % \setbeamercovered{transparent}
-}
+
+\usetheme{Singapore}
 
 
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
+\usepackage{siunitx}
 
 % \usepackage{times}
 
 % For pygmentize
-% \usepackage{fancyvrb}
-% \usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{color}
 
-% \input{styles}
+\input{styles}
 
 
 \title{Python w automatyce}
@@ -141,7 +140,7 @@
       Prąd - \[I = \frac{U}{R}\]
         \pause
         \item
-      Rezystancja - \[I = \frac{U}{I}\]
+      Rezystancja - \[R = \frac{U}{I}\]
         \pause
         \item
       Moc - \[P = U \cdot I\]
@@ -150,20 +149,16 @@
 
 \section{Podłączamy układ}
 
-\begin{frame}{GPIO specjalnego przeznaczenia}
-    TODO: SP
-\end{frame}
-
 \begin{frame}{Rezystory podciągające}
   \begin{itemize}
   \item
       Na niepodłączonych do niczego wyprowadzeniach mogą pojawiać się zakłócenia, stany nieustalone.
     \pause
   \item
-      By ochronić nasz układ przed następstwami ww. zjawisk stosujemy rezystory podciągające
+      By ochronić nasz układ przed następstwami ww.\ zjawisk stosujemy rezystory podciągające
     \pause
   \item
-      Nieużywane piny podłączamy przy użyciu rezystora 10kOm do masy układu
+      Nieużywane piny podłączamy przy użyciu rezystora 10k \si{\kilo\ohm} do masy układu
   \end{itemize}
 \end{frame}
 
@@ -173,6 +168,35 @@
 
 \begin{frame}{Schemat}
     \includegraphics{pulldown.png}
+\end{frame}
+
+\begin{frame}{GPIO specjalnego przeznaczenia}
+    \begin{tabular}{c | c  c  c}
+        Tryb & GPIO0 & GPIO2 & GPIO15 \\
+        \hline
+        Flash (normalny) & wysoki & wysoki & niski \\
+        Bootloader UART & niski & wysoki & niski \\
+        Karta SD & dowolny & dowolny & wysoki \\
+    \end {tabular}
+\end{frame}
+
+\begin{frame}{Inne Piny}
+  \begin{itemize}
+    \pause
+    \item
+        REST - podanie stanu niskiego i powrót do wysokiego powoduje reset
+    \pause
+    \item
+        CH\_PD - stan niski powoduje uśpienie (podciągnięty przez adapter
+    \pause
+    \item
+        TX/RX - interfejs UART (pamiętajmy o skrzyżowaniu)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Zadanie 1}
+    Podłącz chip ESP8266 tak aby uruchamiał się w trybie normalnym (boot z
+    pamięci Flash) oraz posiadał fizyczny przycisk reset.
 \end{frame}
 
 \section{Migająca dioda}
@@ -195,12 +219,15 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{II Prawo Kirchoffa}
+    \[\sum_{k=1}^{n} U_k = 0\]
+\end{frame}
 
-
-\begin{frame}{Zasady doboru wartości rezystora}
-        Napięcie na rezystorze - \[U_{rezystor} = {U_{zasilania} - U_{diody}}\] \\
-        Wartość rezystora - \[R = \frac{U_{zasilania} - U_{diody}}{I}\]
-    \end{frame}
+\begin{frame}{Kalkulacja dla diody z rezystorem}
+    \[U_s = U_r + U_d = U_s\]
+    \[U_s = R \cdot I + U_d\]
+    \[R = \frac{U_s - U_d}{I} \]
+\end{frame}
 
 \begin{frame}{Parametry diody}
     \begin{itemize}
@@ -215,7 +242,23 @@
 \end{frame}
 
 \begin{frame}{Obsługa GPIO w Pythona}
-    TODO: SP
+    \include{gpio}
+\end{frame}
+
+\begin{frame}{Zadanie 2}
+    Podłącz diodę do jednego z pinów GPIO.
+\end{frame}
+
+\begin{frame}{ampy}
+    \include{ampy}
+\end{frame}
+
+\begin{frame}{czas}
+    \include{time}
+\end{frame}
+
+\begin{frame}{Zadanie 3}
+    Napisz program "migająca dioda", który uruchomi się automatycznie.
 \end{frame}
 
 \section{Czujnik dźwięku}
@@ -223,10 +266,15 @@
         \includegraphics[scale=0.30]{sensor.png}
     \end{frame}
 
-    \begin{frame}{Bouncing sygnału}
-        TODO: SP
+    \begin{frame}{Zadanie 4}
+        Stwórz kod, który pomoże określić jak zmienia się stan czujnika przy
+        klaśnięciu.
     \end{frame}
 
+    \begin{frame}{Zadanie 5}
+        Stwórz wykrywacz klaśnięć, który wykona daną funkcję przy 1 lub dwóch
+        klaśnięciach.
+    \end{frame}
 
 \section{Tranzystor jako przełącznik}
 
@@ -234,6 +282,19 @@
          \includegraphics[scale=0.30]{czujnikidioda.png}
     \end{frame}
 
+\section{Tranzystor jako przełącznik}
+
+    \begin{frame}{Wzór}
+        \[R_B = \frac{U_s - U_d}{I_D / h_{FE}} \]
+        \[I_D = 80 mA\]
+        \[h_{FE} = 300\]
+        Układ wyprowadzeń: CBE
+    \end{frame}
+
+\begin{frame}{Zadanie 6}
+    Podłącz żarówkę 12 V poprzez tranzystor i steruj nią przez wykrywacz
+    klaśnięć.
+\end{frame}
 
 \section{Dzielnik napięcia}
 
@@ -246,7 +307,13 @@
         \[U_{wy} = U_{we} \cdot \frac{R_2}{R_1 + R_2}\]
     \end{frame}
 
+\section{PWM}
+\begin{frame}
+    \include{pwm}
+\end{frame}
 
-
+\begin{frame}{Zadanie 7}
+    Dodaj ściemniacz do żarówki sterowany potencjometrem.
+\end{frame}
 
 \end{document}

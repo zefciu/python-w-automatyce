@@ -1,4 +1,4 @@
-prezentacja.pdf: prezentacja.latex styles.tex gpio.tex ampy.tex Makefile 
+prezentacja.pdf: prezentacja.latex styles.tex gpio.tex ampy.tex pwm.tex time.tex Makefile 
 	latex -output-format=pdf prezentacja.latex
 
 styles.tex: Makefile
@@ -9,3 +9,9 @@ gpio.tex: gpio.pycon Makefile
 
 ampy.tex: ampy.sh-session Makefile
 	pygmentize -l console -o ampy.tex ampy.sh-session
+
+pwm.tex: pwm.py Makefile
+	pygmentize -l python -o pwm.tex pwm.py
+
+time.tex: time.py Makefile
+	pygmentize -l python -o time.tex time.py

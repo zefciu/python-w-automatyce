@@ -1,10 +1,10 @@
-prezentacja.aux
-prezentacja.log
-prezentacja.nav
-prezentacja.out
-prezentacja.pdf
-prezentacja.snm
-prezentacja.toc
+*.aux
+*.log
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc
 slajdy/*.tex
 boot.py
 *.swp
