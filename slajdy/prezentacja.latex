@@ -105,7 +105,13 @@
 \section{Podłączamy układ}
 
 \begin{frame}{GPIO specjalnego przeznaczenia}
-    TODO: SP
+    \begin{tabular}{ c | c  c  c }
+        Tryb & GPIO0 & GPIO2 & GPIO15 \\
+        \hline
+        Flash (normalny) & wysoki & wysoki & niski \\
+        Bootloader UART & niski & wysoki & niski \\
+        Karta SD & dowolny & dowolny & wysoki \\
+    \end {tabular}
 \end{frame}
 
 \begin{frame}{Rezystory podciągające}
@@ -123,8 +129,14 @@
     TODO: NG
 \end{frame}
 
-\begin{frame}{Zasady doboru rezystora}
-    TODO: NG
+\begin{frame}{II Prawo Kirchoffa}
+    \[\sum_{k=1}^{n} U_k = 0\]
+\end{frame}
+
+\begin{frame}{Kalkulacja dla diody z rezystorem}
+    \[U_s = U_r + U_d = U_s\]
+    \[U_s = R \cdot I + U_d\]
+    \[R = \frac{U_s - U_d}{I} \]
 \end{frame}
 
 \begin{frame}{Parametry diody}
