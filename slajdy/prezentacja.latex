@@ -13,10 +13,10 @@
 % \usepackage{times}
 
 % For pygmentize
-\usepackage{fancyvrb}
-\usepackage{color}
+% \usepackage{fancyvrb}
+% \usepackage{color}
 
-\input{styles}
+% \input{styles}
 
 
 \title{Python w automatyce}
@@ -100,7 +100,53 @@
   \end{itemize}
 \end{frame}
 
-% TODO opis części elektronicznych
+
+\begin{frame}{Elektronika}
+  \begin{itemize}
+  \item
+      Napięcie - U, natężenie - I, rezystancja - R, moc - P
+      \pause
+  \item
+      Rezystor - R, kondensator - C, dioda - D , tranzystor - T
+      \pause
+  \item
+      Potencjometr - szczególny przypadek rezystora - można go regulować
+      \pause
+  \item
+      Stabilizator napięcia - jest to element który zamienia napięcie z wyższego na niższe, i je stabilizuje
+      \pause
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Szeregowo a równolegle}
+        \includegraphics{sposobypolaczen.jpg}
+\end{frame}
+
+\begin{frame}{Prawa kirchoffa}
+   \begin{itemize}
+      \item
+      I prawo kirchoffa - suma prądów wchodzących równa się sumie prądów wychodzących.
+      \pause
+        \item
+      II prawo kirchofa - suma napięć na wszystkich odbiornikach(rezystorach) połączonych szeregowo jest równa napięciu zasilania
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Wzory}
+   \begin{itemize}
+      \item
+      Napięcie - \[U = R \cdot I\]
+      \pause
+        \item
+      Prąd - \[I = \frac{U}{R}\]
+        \pause
+        \item
+      Rezystancja - \[I = \frac{U}{I}\]
+        \pause
+        \item
+      Moc - \[P = U \cdot I\]
+    \end{itemize}
+\end{frame}
 
 \section{Podłączamy układ}
 
@@ -109,23 +155,52 @@
 \end{frame}
 
 \begin{frame}{Rezystory podciągające}
-    TODO: NG
+  \begin{itemize}
+  \item
+      Na niepodłączonych do niczego wyprowadzeniach mogą pojawiać się zakłócenia, stany nieustalone.
+    \pause
+  \item
+      By ochronić nasz układ przed następstwami ww. zjawisk stosujemy rezystory podciągające
+    \pause
+  \item
+      Nieużywane piny podłączamy przy użyciu rezystora 10kOm do masy układu
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Schemat}
-    TODO: NG
+    \includegraphics{pullup.png}
 \end{frame}
 
+\begin{frame}{Schemat}
+    \includegraphics{pulldown.png}
+\end{frame}
 
 \section{Migająca dioda}
 
 \begin{frame}{Schemat}
-    TODO: NG
+    \includegraphics[scale=0.35]{dioda-plytka.png}
 \end{frame}
 
-\begin{frame}{Zasady doboru rezystora}
-    TODO: NG
+\begin{frame}{Rezystor - po co i dlaczego?}
+  \begin{itemize}
+    \item
+    Maksymalny prąd który ESP8266 może bezpiecznie dostarczyć to 12mA\\
+    \pause
+    \item
+    Przy podłączeiu diody bez rezystora - dioda pobiera więcej prądu
+    niż ESP może bezpiecznie dostarczyć
+    \pause
+    \item
+    Rezystor służy do ograniczenia prądu do bezpiecznej wartości.
+  \end{itemize}
 \end{frame}
+
+
+
+\begin{frame}{Zasady doboru wartości rezystora}
+        Napięcie na rezystorze - \[U_{rezystor} = {U_{zasilania} - U_{diody}}\] \\
+        Wartość rezystora - \[R = \frac{U_{zasilania} - U_{diody}}{I}\]
+    \end{frame}
 
 \begin{frame}{Parametry diody}
     \begin{itemize}
@@ -140,16 +215,12 @@
 \end{frame}
 
 \begin{frame}{Obsługa GPIO w Pythona}
-    \input{gpio}
-\end{frame}
-
-\begin{frame}{Pobieranie i wgrywanie plików}
-    \input{ampy}
+    TODO: SP
 \end{frame}
 
 \section{Czujnik dźwięku}
     \begin{frame}{Schemat}
-        TODO: NG
+        \includegraphics[scale=0.30]{sensor.png}
     \end{frame}
 
     \begin{frame}{Bouncing sygnału}
@@ -160,18 +231,19 @@
 \section{Tranzystor jako przełącznik}
 
     \begin{frame}{Schemat}
-        TODO: NG
+         \includegraphics[scale=0.30]{czujnikidioda.png}
     \end{frame}
 
 
 \section{Dzielnik napięcia}
 
     \begin{frame}{Schemat}
-        TODO: NG
+        \includegraphics[scale=0.7]{dzielnik.png}
+	\[U_{wy} = U_{we} \cdot \frac{R_2}{R_1 + R_2}\]
     \end{frame}
 
     \begin{frame}{Wzór}
-        \[V_{out} = V_{in} \cdot \frac{R_2}{R_1 + R_2}\]
+        \[U_{wy} = U_{we} \cdot \frac{R_2}{R_1 + R_2}\]
     \end{frame}
 
 
